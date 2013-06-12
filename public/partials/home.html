@@ -1,0 +1,22 @@
+<div class="stations" ng-controller="StationsCntrl">
+  <div class="search">
+    <input class="search" ng-model="search" ng-change="updateResults()" placeholder="Where are you?">
+    <label ng-show="noResults">Agh, no search results!</label>
+  </div>
+
+  <div class="station" ng-repeat="station in stations">
+    <a href="#/station/{{station.stationId}}">
+      <span class="id">{{station.stationId}}</span>
+      <header class="bike-header">
+        <h2 class="station-name">{{station.stationName}}</h2>
+      </header><!-- end .bike-header -->
+      
+      <ul class="stats">
+        <li><span class="label">Available Bikes</span> {{station.availableBikes}}</li>
+        <li><span class="label">Available Docks</span> {{station.availableDocks}}</li>
+        <li><span class="label">Working Docks</span> {{station.workingDocs}}</li>
+        <li><span class="label">Latest Tips</span> {{station.numLatestTips}}</li>
+      </ul><!-- end ul.stats -->
+    </a>
+  </div><!-- end .station -->
+</div><!-- end .stations -->

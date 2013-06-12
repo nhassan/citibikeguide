@@ -1,0 +1,40 @@
+<div class="station-detail">
+  <div class="station">
+    <span class="id">{{station.stationId}}</span>
+    <header class="bike-header">
+      <h2 class="station-name">{{station.stationName}}</h2>
+    </header><!-- end .bike-header -->
+
+    <ul class="stats">
+      <li><span class="label">Available Bikes</span> {{station.availableBikes}}</li>
+      <li><span class="label">Available Docks</span> {{station.availableDocks}}</li>
+      <li><span class="label">Working Docks</span> {{station.workingDocs}}</li>
+      <li><span class="label">Latest Tips</span> {{station.numLatestTips}}</li>
+    </ul><!-- end ul.stats -->
+  </div>
+
+  <div class="tips" ng-show="tips">
+    <div class="tip" ng-repeat="tip in tips">
+      {{tip.tip}}
+      <span class="by-line" ng-show="tip.name">by {{tip.name}}</span>
+      <span class="added-on">{{tip.addedOn}}</span>
+    </div>
+  </div>
+
+  <div class="add-tip">
+    <form novalidate class="tip-form" ng-hide="submittedTip">
+      <label>
+        <textarea placeholder="Tip message, e.g. docking bikes don't work." ng-model="tip.message"></textarea>
+
+        <span class="help-inline" ng-show="tip.message.$error">Required</span>
+      </label>
+      <label>
+        <input type="text" ng-model="tip.name" placeholder="Name" />
+      </label>
+      <button ng-click="save(tip)">Add Tip</button>
+    </form>
+    <div ng-show="submittedTip">
+      Thanks for the tip, and taking the time! Love, The Community
+    </div>
+  </div>
+</div>

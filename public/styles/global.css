@@ -1,0 +1,158 @@
+/*
+ * look at that old school reset
+ */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.68em;
+}
+
+
+/*--------------------------
+ * UTILS
+ ---------------------------*/
+
+.inside {
+  padding: 10px;
+  margin: auto;
+  width: 400px;
+}
+
+/*--------------------------
+ * HEADER
+ ---------------------------*/
+
+header.main {
+  background: #00b7f0;
+  color: white;
+}
+
+header.main h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*--------------------------
+ * STATIONS
+ ---------------------------*/
+
+.stations div.search input {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+}
+
+.stations div.search label {
+  font-weight: bold;
+  display: block;
+  line-height: 2em;
+}
+
+.stations div.search {
+  padding-bottom: 20px;
+}
+
+/*--------------------------
+ * STATION
+ ---------------------------*/
+
+.station {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+}
+
+.station a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.station a:hover header.bike-header h2 {
+  text-decoration: underline;
+}
+
+.station .id {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #00b7f0;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.station header.bike-header h2 {
+  line-height: 30px;
+}
+
+.station ul.stats {
+  list-style: none;
+}
+
+.station ul.stats li .label {
+  color: #999;
+}
+
+
+/*--------------------------
+ * STATION DETAIL
+ ---------------------------*/
+
+.station-detail {
+  margin-top: 10px;
+}
+
+.station-detail .tips,
+.station-detail .add-tip {
+  border-top: dashed 1px #ccc;
+  padding: 10px 0;
+}
+
+.station-detail .tips .tip {
+  margin: 10px 10px 20px;
+  border-left: solid 1px black;
+  padding-left: 20px;
+}
+
+.station-detail .tips .tip span.by-line,
+.station-detail .tips .tip span.added-on {
+  display: block;
+  color: #888;
+  margin-top: 10px;
+}
+
+.station-detail form.tip-form {
+  margin-top: 10px;
+}
+
+.station-detail form.tip-form label {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.station-detail form.tip-form input {
+  padding: 10px;
+  width: 80%;
+  font-size: 12px;
+}
+
+.station-detail form.tip-form textarea {
+  padding: 10px;
+  font-size: 12px;
+  width: 80%;
+  height: 100px;
+}
+
+.station-detail form.tip-form button {
+  padding: 10px;
+  text-transform: none;
+}

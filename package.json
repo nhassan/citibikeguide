@@ -1,0 +1,22 @@
+{
+  "name": "citibikeguide",
+  "version": "0.0.1b",
+  "description": "A collaborated status dashboard for New York City's new CitiBike program.",
+  "main": "citibikeguide.js",
+  "scripts": {
+    "start": "node citibikeguide.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nhassan/citibikeguide.git"
+  },
+  "author": "naz",
+  "license": "GPL",
+  "dependencies": {
+    "express": "~3.2.6",
+    "mongoose": "~3.6.11",
+    "node-schedule": "~0.1.8",
+    "needle": "~0.5.0",
+    "ejs": "~0.8.4"
+  }
+}
