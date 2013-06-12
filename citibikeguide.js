@@ -34,7 +34,8 @@ app.post('/api/station/:id', requests.stationAddTip);
 // STARTUP
 // ------------------------------
 
-var environment = app.get('env');
-var port = 3000;
-console.log('\n\nStarting Citi Bike Guide App Server in [' + environment + '] on ' + port + '.\n\n');
-app.listen(port);
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+  console.log('Citi Bike Guide App Server');
+  console.log("Listening on port " + port + " in " + app.settings.env + " mode");
+});

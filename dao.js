@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/test');
+
+var mongoConnectUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/citibikeguide';
+mongoose.connect(mongoConnectUrl);
+
+console.log('MongoService ' + mongoConnectUrl + ' [OK]');
 
 /*jslint supernew:true*/
 
