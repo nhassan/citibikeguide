@@ -35,7 +35,7 @@ exports.updateCitiBikeData = function() {
 
         // update existing stations
         newStatus.get('stations').forEach(function(station) {
-          dao.getStationDAO().getStationByStationId(station.stationId, function(err, doc) {
+          dao.getStationDAO().getStationByStationId(station.id, function(err, doc) {
             if (err) {
               console.error(err);
             } else {
