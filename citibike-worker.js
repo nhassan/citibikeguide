@@ -8,14 +8,3 @@ var jobs = require('./jobs');
 
 var everyMinuteReccurrenceRule = new schedule.RecurrenceRule();
 schedule.scheduleJob(everyMinuteReccurrenceRule, jobs.updateCitiBikeData);
-
-
-// ---------------------------------
-// DEBUG
-// ---------------------------------
-
-exports.debug = function() {
-  jobs.updateCitiBikeData();
-};
-
-jobs.updateCitiBikeData();

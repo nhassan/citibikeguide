@@ -10,59 +10,63 @@ var needle = require('needle');
 
 exports.updateCitiBikeData = function() {
 
-  needle.get('http://citibikenyc.com/stations/json/', function(err, response, body) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    var statusJSON = JSON.parse(body);
-    var executionTime = new Date(statusJSON.executionTime);
-    dao.getStatusDAO().hasDataForDate(executionTime, function(err, hasData) {
+  try {
+    needle.get('http://citibikenyc.com/stations/json/', function(err, response, body) {
       if (err) {
         console.error(err);
         return;
       }
 
-      if (hasData) {
-        console.log('Already have this data, no need!');
-      } else {
+      var statusJSON = JSON.parse(body);
+      var executionTime = new Date(statusJSON.executionTime);
+      dao.getStatusDAO().hasDataForDate(executionTime, function(err, hasData) {
+        if (err) {
+          console.error(err);
+          return;
+        }
 
-        var newStatus = dao.getStatusDAO().createNewStatus({
-          fetchedOn: executionTime,
-          stations: statusJSON.stationBeanList
-        });
+        if (hasData) {
+          console.log('Already have this data, no need!');
+        } else {
 
-        // update existing stations
-        newStatus.get('stations').forEach(function(station) {
-          dao.getStationDAO().getStationByStationId(station.id, function(err, doc) {
-            if (err) {
-              console.error(err);
-            } else {
-              if (!doc) {
-                doc = dao.getStationDAO().createNewStation(station);
+          var newStatus = dao.getStatusDAO().createNewStatus({
+            fetchedOn: executionTime,
+            stations: statusJSON.stationBeanList
+          });
+
+          // update existing stations
+          newStatus.get('stations').forEach(function(station) {
+            dao.getStationDAO().getStationByStationId(station.id, function(err, doc) {
+              if (err) {
+                console.error(err);
+              } else {
+                if (!doc) {
+                  doc = dao.getStationDAO().createNewStation(station);
+                }
+
+                doc.set('stationId', station.id);
+                doc.set('availableBikes', station.availableBikes);
+                doc.set('totalDocks', station.totalDocks);
+                doc.set('availableDocks', station.availableDocks);
+                doc.set('statusValue', station.statusValue);
+
+                doc.save();
               }
+            });
+          });
 
-              doc.set('stationId', station.id);
-              doc.set('availableBikes', station.availableBikes);
-              doc.set('totalDocks', station.totalDocks);
-              doc.set('availableDocks', station.availableDocks);
-              doc.set('statusValue', station.statusValue);
-
-              doc.save();
+          newStatus.save(function() {
+            if (err) {
+              console.error('issue storing');
+            } else {
+              console.log('Stored this new status!');
             }
           });
-        });
-
-        newStatus.save(function() {
-          if (err) {
-            console.error('issue storing');
-          } else {
-            console.log('Stored this new status!');
-          }
-        });
-      }
+        }
+      });
     });
-  });
+  } catch (e) {
+    console.error(e);
+  }
 
 };
